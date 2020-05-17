@@ -1,0 +1,23 @@
+{
+  "name": "travel",
+  "version": "1.0.0",
+  "description": "1. [Building The Header](Docs/1.BuildingTheHeader.md)\r 2. [How CSS Work Behind the scene](Docs/3.%20How%20CSS%20Works%20A%20Look%20Behind%20the%20Scenes/HowCssWorksBehiedTheScence.md)\r 1. [Introduction to Sass And NPM](Docs/4.%20Introduction%20to%20Sass%20and%20NPM/ntroductiontoSassandNPM.md)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "node-sass sass/main.scss css/styles.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccweerasinghe1994/AdvancedCss.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ccweerasinghe1994/AdvancedCss/issues"
+  },
+  "homepage": "https://github.com/ccweerasinghe1994/AdvancedCss#readme",
+  "dependencies": {
+    "node-sass": "^4.14.1"
+  }
+}
