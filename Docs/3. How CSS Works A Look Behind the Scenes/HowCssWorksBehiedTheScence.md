@@ -28,34 +28,72 @@
 
 1. ## How CSS is Parsed, Part 3 Inheritance
 
-   ![alt](../img/HowCssWorksBehiendTheScene/14.png)
-   ![alt](../img/HowCssWorksBehiendTheScene/15.png)
+    ![alt](../img/HowCssWorksBehiendTheScene/14.png)
+    ![alt](../img/HowCssWorksBehiendTheScene/15.png)
 
 1. ## Converting px to rem An Effective Workflow
 
+1. ## How CSS Renders a Website The Visual Formatting Model
+
+1. ## CSS Architecture, Components and BEM
+
+1. ## Implementing BEM in the Natours Project
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon" />
+    <title>Travel</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo-box">
+        <img src="./img/logo-white.png" alt="logo" class="header__logo" />
+      </div>
+
+      <div class="header__text-box">
+        <!--
+        this is the title part
+         -->
+        <h1 class="heading-primary">
+          <span class="heading-primary--main">Outdoors</span>
+          <span class="heading-primary--sub">where life happens</span>
+        </h1>
+        <!--
+          this is the button
+          -->
+        <a href="#" class="btn btn--white btn--animated">Discover Our Tours</a>
+      </div>
+    </header>
+  </body>
+</html>
+
+```
 ```css
 /*
 this is called a universal selector
 */
-*,
-::after,
-::before {
+* {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
-}
-html {
-  font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 16px;
   line-height: 1.7;
   color: #777;
-  padding: 3rem;
-  box-sizing: border-box;
+  padding: 30px;
 }
 
 .header {
@@ -64,7 +102,8 @@ body {
       to right bottom,
       rgba(126, 213, 111, 0.8),
       rgba(40, 180, 133, 0.8)
-    ), url("../img/travel.jpg");
+    ),
+    url("../img/travel.jpg");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
@@ -72,17 +111,17 @@ body {
   position: relative;
 }
 
-.logo-box {
+.header__logo-box {
   position: absolute;
-  top: 4rem;
-  left: 4rem;
+  top: 40px;
+  left: 40px;
 }
 
-.logo {
-  height: 3.5rem;
+.header__logo {
+  height: 35px;
 }
 
-.text-box {
+.header__text-box {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -94,14 +133,14 @@ body {
   color: #fff;
   text-transform: uppercase;
   backface-visibility: hidden;
-  margin-bottom: 6rem;
+  margin-bottom: 60px;
 }
 
-.heading-primary-main {
+.heading-primary--main {
   display: block;
-  font-size: 6rem;
+  font-size: 60px;
   font-weight: 600;
-  letter-spacing: 3.5rem;
+  letter-spacing: 35px;
   animation-name: moveInLeft;
   animation-duration: 1s;
   animation-timing-function: ease-out;
@@ -112,11 +151,11 @@ body {
     */
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
   display: block;
-  font-size: 2rem;
+  font-size: 20px;
   font-weight: 400;
-  letter-spacing: 2.2rem;
+  letter-spacing: 22px;
   animation: moveInRight 1s ease-out;
 }
 
@@ -125,11 +164,11 @@ body {
   /*  start   */
   0% {
     opacity: 0;
-    transform: translateX(-10rem);
+    transform: translateX(-100px);
   }
   /*  inBetween   */
   80% {
-    transform: translateX(1rem);
+    transform: translateX(10px);
   }
   /*  end     */
   100% {
@@ -142,11 +181,11 @@ body {
   /*  start   */
   0% {
     opacity: 0;
-    transform: translateX(10rem);
+    transform: translateX(100px);
   }
   /*  inBetween   */
   80% {
-    transform: translateX(-1rem);
+    transform: translateX(-10px);
   }
   /*  end     */
   100% {
@@ -159,7 +198,7 @@ body {
   /*  start   */
   0% {
     opacity: 0;
-    transform: translateY(10rem);
+    transform: translateY(100px);
   }
 
   /*  end     */
@@ -176,21 +215,21 @@ link is a sudo class
 .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 1.5rem 4rem;
+  padding: 15px 40px;
   display: inline-block;
-  border-radius: 4rem;
+  border-radius: 40px;
   transition: all 0.6s;
   position: relative;
 }
 
 .btn:hover {
-  transform: translateY(-0.3rem);
-  box-shadow: 0 10rem 20rem rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn:active {
-  transform: translateY(-0.1rem);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn:after {
@@ -198,7 +237,7 @@ link is a sudo class
   display: inline-block;
   width: 100%;
   height: 100%;
-  border-radius: 10rem;
+  border-radius: 100px;
   position: absolute;
   top: 0;
   left: 0;
@@ -206,12 +245,12 @@ link is a sudo class
   transition: all 0.4s;
 }
 
-.btn-white {
+.btn--white {
   background-color: white;
   color: #777;
 }
 
-.btn-white:after {
+.btn--white:after {
   background-color: white;
 }
 
@@ -220,27 +259,9 @@ link is a sudo class
   opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
   animation: moveInBottom 0.5s ease-out 0.75s;
   animation-fill-mode: backwards;
 }
+
 ```
-
-1. ## How CSS Renders a Website The Visual Formatting Model
-
-   ![alt](../img/HowCssWorksBehiendTheScene/16.png)
-   ![alt](../img/HowCssWorksBehiendTheScene/17.png)
-   ![alt](../img/HowCssWorksBehiendTheScene/18.png)
-   ![alt](../img/HowCssWorksBehiendTheScene/19.png)
-   ![alt](../img/HowCssWorksBehiendTheScene/20.png)
-   ![alt](../img/HowCssWorksBehiendTheScene/21.png)
-   ![alt](../img/HowCssWorksBehiendTheScene/22.png)
-
-1. ## CSS Architecture, Components and BEM
-
-   ![alt](../img/HowCssWorksBehiendTheScene/23.png)
-   ![alt](../img/HowCssWorksBehiendTheScene/24.png)
-   ![alt](../img/HowCssWorksBehiendTheScene/25.png)
-   ![alt](../img/HowCssWorksBehiendTheScene/26.png)
-
-1. ## Implementing BEM in the Natours Project
